@@ -1,0 +1,9 @@
+.settings
+eclipse
+documentation
+tmp
+.classpath
+.project
+web_assignment2_gym_app.iml
+web_assignment2_gym_app.iws
+web_assignment2_gym_app.ipr
