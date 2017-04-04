@@ -13,7 +13,7 @@ public class Dashboard extends Controller
   public static void index() {
     Logger.info("Rendering Dashboard");
 
-    Assessment a1 = new Assessment(60.2, 45.0, 12.2, 44.4, 38,38.0);
+/*    Assessment a1 = new Assessment(60.2, 45.0, 12.2, 44.4, 38,38.0);
     Assessment a2 = new Assessment(56.6, 23.4, 24.5, 23.4, 45.2,22.4);
 
     AssessmentList al1 = new AssessmentList("Assessment For Me");
@@ -24,7 +24,9 @@ public class Dashboard extends Controller
 
     List<AssessmentList> assessmentLists = new ArrayList<AssessmentList>();
     assessmentLists.add(al1);
-    assessmentLists.add(al2);
+    assessmentLists.add(al2);*/
+
+    List<AssessmentList> assessmentLists = AssessmentList.findAll();
 
     render ("dashboard.html", assessmentLists);
   }

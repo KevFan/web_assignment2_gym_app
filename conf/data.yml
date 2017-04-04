@@ -14,12 +14,12 @@ Assessment(a2):
   waist: 56.7
   hips: 23.4
 
-AssessmenList(al1):
-  title: Assesment for Me
+AssessmentList(al1):
+  name: Assesment for Me
   assessments:
   - a1
 
-AssessmenList(al2):
-  title: Assesment for You
+AssessmentList(al2):
+  name: Assesment for You
   assessments:
   - a2

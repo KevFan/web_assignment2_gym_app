@@ -1,9 +1,15 @@
 package models;
 
+import javax.persistence.Entity;
+
+import play.db.jpa.Model;
+
 /**
  * Created by kevin on 04/04/2017.
  */
-public class Assessment {
+
+@Entity
+public class Assessment extends Model {
     public double weight;
     public double chest;
     public double thigh;
