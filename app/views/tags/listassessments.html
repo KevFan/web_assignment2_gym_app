@@ -10,24 +10,26 @@
     </tr>
     </thead>
     <tbody>
+    #{list items:_assessmentList.assessments, as:'assessment'}
     <tr>
         <td>
-            Data
+            ${assessment.weight}
         </td>
         <td>
-            Data
+            ${assessment.chest}
         </td>
         <td>
-            Data
+            ${assessment.thigh}
         </td>
         <td>
-            Data
+            ${assessment.upperArm}
         </td>
         <td>
-            Data
+            ${assessment.waist}
         </td>
         <td>
-            Data
+            ${assessment.hips}
         </td>
+    #{/list}
     </tbody>
 </table>
