@@ -3,9 +3,11 @@
 
 #{menu id:"dashboard"/}
 
+#{list items:assessmentLists, as:'assessmentList'}
 <section class="ui segment">
     <h2 class="ui header">
-        Assessments
+        ${assessmentList.name}
     </h2>
     #{listassessments assessmentList:assessmentList/}
 </section>
+#{/list}
