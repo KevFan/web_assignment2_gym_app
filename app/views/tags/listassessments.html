@@ -6,7 +6,8 @@
         <th>Thigh</th>
         <th>Upper Arm</th>
         <th>Waist</th>
-        <th>Hips</th>
+        <th>Hips
+        <th></th>
     </tr>
     </thead>
     <tbody>
@@ -29,6 +30,9 @@
         </td>
         <td>
             ${assessment.hips}
+        </td>
+        <td>
+            <a href="/assessmentLists/${_assessmentList.id}/deleteAssessment/${assessment.id}" class="ui tiny red button">Delete Assessment</a>
         </td>
     #{/list}
     </tbody>
