@@ -30,4 +30,11 @@ public class Dashboard extends Controller
 
     render ("dashboard.html", assessmentLists);
   }
+
+  public static void deleteAssessmentList(Long id) {
+    AssessmentList assessmentList = AssessmentList.findById(id);
+    Logger.info("Removing " + assessmentList.name);
+    assessmentList.delete();
+    redirect("/dashboard");
+  }
 }

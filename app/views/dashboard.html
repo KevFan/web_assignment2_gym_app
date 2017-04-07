@@ -8,6 +8,11 @@
     <h2 class="ui header">
         ${assessmentList.name}
     </h2>
-    <a href="/assessmentLists/${assessmentList.id}"> View </a>
+    <a href="/assessmentLists/${assessmentList.id}" class="ui icon button">
+        <i class="icon folder open"></i>
+    </a>
+    <a href="/dashboard/deleteAssessmentList/${assessmentList.id}" class="ui icon button">
+        <i class="icon trash"></i>
+    </a>
 </section>
 #{/list}
