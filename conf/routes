@@ -12,6 +12,8 @@ GET     /admin                                  Admin.index
 GET     /assessmentLists/{id}                   AssessmentListCtrl.index
 GET     /assessmentLists/{id}/deleteAssessment/{assessmentid}                   AssessmentListCtrl.deleteAssessment
 GET     /dashboard/deleteAssessmentList/{id}          Dashboard.deleteAssessmentList
+
+POST    /assessmentLists/{id}/addassessment                  AssessmentListCtrl.addAssessment
 # Ignore favicon requests
 GET     /favicon.ico                            404
 

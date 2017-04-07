@@ -26,4 +26,12 @@ public class AssessmentListCtrl extends Controller {
         assessment.delete();
         render("assessmentList.html" ,assessmentList);
     }
+
+    public static void addAssessment(Long id, double weight, double chest, double thigh, double upperArm, double waist, double hips ) {
+        Assessment assessment = new Assessment(weight, chest, thigh, upperArm, waist, hips);
+        AssessmentList assessmentList = AssessmentList.findById(id);
+        assessmentList.assessments.add(assessment);
+        assessmentList.save();
+        redirect("/assessmentLists/" + id);
+    }
 }
