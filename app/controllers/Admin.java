@@ -13,7 +13,7 @@ public class Admin extends Controller {
     public static void index() {
         Logger.info("Rendering Admin");
 
-        List<Assessment> assessments = Assessment.findAll();
-        render("admin.html", assessments);
+        List<Assessment> assessmentlist = Assessment.findAll();
+        render("admin.html", assessmentlist);
     }
 }

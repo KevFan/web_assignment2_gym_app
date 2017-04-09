@@ -23,7 +23,7 @@ public class Member extends Model {
     public double startingWeight;
 
     @OneToMany(cascade = CascadeType.ALL)
-    public List<AssessmentList> assessmentLists = new ArrayList<AssessmentList>();
+    public List<Assessment> assessmentlist = new ArrayList<Assessment>();
 
     public Member(String name, String gender, String email, String password, String address, double height, double startingWeight) {
         this.name = name;

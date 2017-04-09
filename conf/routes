@@ -4,21 +4,18 @@
 
 # Home page
 GET     /                                       Start.index
-GET     /dashboard                              Dashboard.index
-GET     /about                                  About.index
 
-GET     /admin                                  Admin.index
-
-GET     /assessmentLists/{id}                   AssessmentListCtrl.index
-GET     /assessmentLists/{id}/deleteAssessment/{assessmentid}                   AssessmentListCtrl.deleteAssessment
-GET     /dashboard/deleteAssessmentList/{id}          Dashboard.deleteAssessmentList
-
-POST    /assessmentLists/{id}/addassessment                  AssessmentListCtrl.addAssessment
 GET    /signup                                  Accounts.signup
 GET    /login                                   Accounts.login
 POST   /register                                Accounts.register
 POST   /authenticate                            Accounts.authenticate
 GET    /logout                                  Accounts.logout
+
+GET     /dashboard                              Dashboard.index
+POST    /dashboard/addassessment                      Dashboard.addAssessment
+GET     /dashboard/{id}/deleteassessment/{assessmentid}     Dashboard.deleteAssessment
+GET     /admin                                  Admin.index
+GET     /about                                  About.index
 
 
 # Ignore favicon requests
