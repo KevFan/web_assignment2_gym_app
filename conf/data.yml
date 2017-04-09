@@ -31,19 +31,25 @@ Assessment(a4):
   hips: 23.4
 
 Member(m1):
-  firstname: homer
-  lastname: simpson
+  name: Homer Simpson
+  gender: Male
   email: homer@simpson.com
   password: secret
+  address: Springfield
+  height: 1.8
+  startingWeight: 120
   assessmentlist:
   - a1
   - a2
 
 Member(m2):
-  firstname: marge
-  lastname: simpson
+  name: Marge Simpson
+  gender: Female
   email: marge@simpson.com
   password: secret
+  address: Springfield
+  height: 1.7
+  startingWeight: 70
   assessmentlist:
   - a3
   - a4

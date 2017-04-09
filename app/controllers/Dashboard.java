@@ -37,4 +37,28 @@ public class Dashboard extends Controller
         Logger.info("Deleting Assessment");
         redirect("/dashboard");
     }
+
+    /**
+     * This method calculates the BMI value for the member.
+     *
+     * The formula used for BMI is weight divided by the square of the height.
+     *
+     * @return the BMI value for the member.  The number returned is truncated to two decimal places.
+     **/
+    public static double calculateBMI() {
+        Member member = Accounts.getLoggedInMember();
+        if (member.height <= 0)
+            return 0;
+        else
+        return toTwoDecimalPlaces(member.startingWeight / (member.height * member.height));
+    }
+
+    /*
+     * This is a private helper method.  It ensures that all double data returned from this class
+     * is restricted to two decimal places.  Note:  this method does not round
+     */
+    private static double toTwoDecimalPlaces( double num){
+        return (int)(num *100 ) / 100.0;
+    }
+
 }
