@@ -49,8 +49,12 @@ public class Dashboard extends Controller
         Member member = Accounts.getLoggedInMember();
         if (member.height <= 0)
             return 0;
-        else
-        return toTwoDecimalPlaces(member.startingWeight / (member.height * member.height));
+        else if (member.assessmentlist.size() != 0){
+           return toTwoDecimalPlaces(member.assessmentlist.get(member.assessmentlist.size() - 1).weight / ((member.height * member.height)));
+        }
+        else {
+            return toTwoDecimalPlaces(member.startingWeight / (member.height * member.height));
+        }
     }
 
     /*
