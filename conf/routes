@@ -14,6 +14,13 @@ GET     /assessmentLists/{id}/deleteAssessment/{assessmentid}                   
 GET     /dashboard/deleteAssessmentList/{id}          Dashboard.deleteAssessmentList
 
 POST    /assessmentLists/{id}/addassessment                  AssessmentListCtrl.addAssessment
+GET    /signup                                  Accounts.signup
+GET    /login                                   Accounts.login
+POST   /register                                Accounts.register
+POST   /authenticate                            Accounts.authenticate
+GET    /logout                                  Accounts.logout
+
+
 # Ignore favicon requests
 GET     /favicon.ico                            404
 

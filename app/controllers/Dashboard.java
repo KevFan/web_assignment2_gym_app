@@ -2,6 +2,7 @@ package controllers;
 
 import models.Assessment;
 import models.AssessmentList;
+import models.Member;
 import play.Logger;
 import play.mvc.Controller;
 
@@ -26,13 +27,20 @@ public class Dashboard extends Controller
     assessmentLists.add(al1);
     assessmentLists.add(al2);*/
 
-    List<AssessmentList> assessmentLists = AssessmentList.findAll();
+/*    List<AssessmentList> assessmentLists = AssessmentList.findAll();
 
-    render ("dashboard.html", assessmentLists);
+    render ("dashboard.html", assessmentLists);*/
+
+      Member member = Accounts.getLoggedInMember();
+      List<AssessmentList> assessmentLists = member.assessmentLists;
+      render("dashboard.html", member, assessmentLists);
   }
 
   public static void deleteAssessmentList(Long id) {
+    Member member = Accounts.getLoggedInMember();
     AssessmentList assessmentList = AssessmentList.findById(id);
+    member.assessmentLists.remove(assessmentList);
+    member.save();
     Logger.info("Removing " + assessmentList.name);
     assessmentList.delete();
     redirect("/dashboard");
