@@ -103,4 +103,49 @@ public class Dashboard extends Controller
         else if (bmi < 40)    return "SEVERELY OBESE";
         else                  return "VERY SEVERELY OBESE";
     }
+
+    /**
+     * This method returns a boolean to indicate if the member has an ideal
+     * body weight based on the Devine formula.
+     *
+     * <pre>
+     * For males, an ideal body weight is:   50 kg + 2.3 kg for each inch over 5 feet.
+     * For females, an ideal body weight is: 45.5 kg + 2.3 kg for each inch over 5 feet.
+     *
+     * Note:  if no gender is specified, return the result of the female calculation.
+     *
+     * </pre>
+     *
+     * @return Returns true if the result of the devine formula is within 2 kgs (inclusive) of the
+     *         starting weight; false if it is outside this range.
+     */
+    public static boolean isIdealBodyWeight()
+    {
+        Member member = Accounts.getLoggedInMember();
+        double fiveFeet = 60.0;
+        double idealBodyWeight;
+
+        double inches = member.height * 39.37;
+
+        if (inches <= fiveFeet){
+            if (member.gender.equals("M")){
+                idealBodyWeight = 50;
+            }
+            else{
+                idealBodyWeight = 45.5;
+            }
+        }
+        else{
+            if (member.gender.equals("M")){
+                idealBodyWeight = 50 + ((inches - fiveFeet) * 2.3);
+            }
+            else{
+                idealBodyWeight = 45.5 + ((inches - fiveFeet) * 2.3);
+            }
+        }
+
+        return (      (idealBodyWeight <= (member.startingWeight + 2.0))
+                && (idealBodyWeight >= (member.startingWeight - 2.0))
+        );
+    }
 }
