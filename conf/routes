@@ -17,6 +17,15 @@ GET     /dashboard/{id}/deleteassessment/{assessmentid}     Dashboard.deleteAsse
 GET     /admin                                  Admin.index
 GET     /about                                  About.index
 GET     /setting                                Setting.index
+POST   /updateMemberName                            Setting.updateMemberName
+POST   /updateMemberGender                            Setting.updateMemberGender
+POST   /updateMemberEmail                            Setting.updateMemberEmail
+POST   /updateMemberPassword                            Setting.updateMemberPassword
+POST   /updateMemberAddress                            Setting.updateMemberAddress
+POST   /updateMemberHeight                            Setting.updateMemberHeight
+POST   /updateMemberStartingWeight                            Setting.updateMemberStartingWeight
+
+
 
 
 

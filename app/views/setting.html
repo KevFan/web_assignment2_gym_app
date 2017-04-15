@@ -3,45 +3,101 @@
 
 #{menu id:"setting"/}
 
-<div class="ui two column grid basic middle aligned segment">
+<section class="ui raised segment">
     <section class="column">
         <form class="ui stacked segment form">
             <h3 class="ui header">Member Details</h3>
-            <div class="two fields">
+            <div class="three fields">
                 <div class="field">
                     <label>Name</label>
                     ${member.name}
                 </div>
                 <div class="field">
+                    <input placeholder="Name" type="text" name="name">
+                </div>
+                <div class="field">
+                    <button class="ui blue submit button" formaction="/updateMemberName" formmethod="POST">Update</button>
+                </div>
+            </div>
+
+            <div class="three fields">
+                <div class="field">
                     <label>Gender</label>
-                    ${member.gender}
+                ${member.gender}
                 </div>
+                <div class="field">
+                    <input placeholder="Gender" type="text" name="gender">
                 </div>
+                <div class="field">
+                    <button class="ui blue submit button" formaction="/updateMemberGender" formmethod="POST">Update</button>
+                </div>
+            </div>
+
+            <div class="three fields">
                 <div class="field">
                     <label>Email</label>
-                    ${member.email}
+                ${member.email}
                 </div>
+                <div class="field">
+                    <input placeholder="Email" type="text" name="email">
+                </div>
+                <div class="field">
+                    <button class="ui blue submit button" formaction="/updateMemberEmail" formmethod="POST">Update</button>
+                </div>
+            </div>
+
+            <div class="three fields">
                 <div class="field">
                     <label>Password</label>
-                    ${member.password}
+                ${member.password}
                 </div>
+                <div class="field">
+                    <input placeholder="Password" type="password" name="password">
+                </div>
+                <div class="field">
+                    <button class="ui blue submit button" formaction="/updateMemberPassword" formmethod="POST">Update</button>
+                </div>
+            </div>
+
+            <div class="three fields">
                 <div class="field">
                     <label>Address</label>
-                    ${member.address}
+                ${member.address}
                 </div>
-            <div class="two fields">
+                <div class="field">
+                    <input placeholder="Address" type="text" name="address">
+                </div>
+                <div class="field">
+                    <button class="ui blue submit button" formaction="/updateMemberAddress" formmethod="POST">Update</button>
+                </div>
+            </div>
+
+            <div class="three fields">
                 <div class="field">
                     <label>Height</label>
-                    ${member.height}
+                ${member.height}
                 </div>
                 <div class="field">
+                    <input placeholder="Height (m)" type="text" name="height">
+                </div>
+                <div class="field">
+                    <button class="ui blue submit button" formaction="/updateMemberHeight" formmethod="POST">Update</button>
+                </div>
+            </div>
+
+            <div class="three fields">
+                <div class="field">
                     <label>Starting Weight</label>
-                    ${member.startingWeight}
+                ${member.startingWeight}
+                </div>
+                <div class="field">
+                    <input placeholder="Starting Weight (kg)" type="text" name="startingWeight">
+                </div>
+                <div class="field">
+                    <button class="ui blue submit button" formaction="/updateMemberStartingWeight" formmethod="POST">Update</button>
                 </div>
             </div>
         </form>
     </section>
-    <section class="column">
-        Update stuff
-    </section>
-</div>
+</section>
+
