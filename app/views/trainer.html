@@ -1,0 +1,16 @@
+#{extends 'main.html' /}
+#{set title:'trainer' /}
+
+#{admin id:"trainer"/}
+
+
+#{list items:memberList, as:'member'}
+<tr>
+    <td>
+    ${member.id}
+    </td>
+    <td>
+    ${member.name}
+    </td>
+</tr>
+#{/list}

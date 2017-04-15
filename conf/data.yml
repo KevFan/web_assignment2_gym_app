@@ -53,3 +53,11 @@ Member(m2):
   assessmentlist:
   - a3
   - a4
+
+Trainer(t1):
+  name: Trainer
+  email: trainer@trainer.com
+  password: secret
+  memberList:
+  - m1
+  - m2

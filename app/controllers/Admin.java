@@ -3,6 +3,8 @@ package controllers;
 import java.util.List;
 
 import models.Assessment;
+import models.Member;
+import models.Trainer;
 import play.Logger;
 import play.mvc.Controller;
 
@@ -13,7 +15,8 @@ public class Admin extends Controller {
     public static void index() {
         Logger.info("Rendering Admin");
 
-        List<Assessment> assessmentlist = Assessment.findAll();
-        render("admin.html", assessmentlist);
+        Trainer trainer = Accounts.getLoggedInTrainer();
+        List<Member> memberList = trainer.memberList;
+        render("trainer.html", memberList);
     }
 }
