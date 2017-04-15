@@ -1,0 +1,47 @@
+#{extends 'main.html' /}
+#{set title:'Setting' /}
+
+#{menu id:"setting"/}
+
+<div class="ui two column grid basic middle aligned segment">
+    <section class="column">
+        <form class="ui stacked segment form">
+            <h3 class="ui header">Member Details</h3>
+            <div class="two fields">
+                <div class="field">
+                    <label>Name</label>
+                    ${member.name}
+                </div>
+                <div class="field">
+                    <label>Gender</label>
+                    ${member.gender}
+                </div>
+                </div>
+                <div class="field">
+                    <label>Email</label>
+                    ${member.email}
+                </div>
+                <div class="field">
+                    <label>Password</label>
+                    ${member.password}
+                </div>
+                <div class="field">
+                    <label>Address</label>
+                    ${member.address}
+                </div>
+            <div class="two fields">
+                <div class="field">
+                    <label>Height</label>
+                    ${member.height}
+                </div>
+                <div class="field">
+                    <label>Starting Weight</label>
+                    ${member.startingWeight}
+                </div>
+            </div>
+        </form>
+    </section>
+    <section class="column">
+        Update stuff
+    </section>
+</div>

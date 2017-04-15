@@ -16,6 +16,9 @@ POST    /dashboard/addassessment                      Dashboard.addAssessment
 GET     /dashboard/{id}/deleteassessment/{assessmentid}     Dashboard.deleteAssessment
 GET     /admin                                  Admin.index
 GET     /about                                  About.index
+GET     /setting                                Setting.index
+
+
 
 
 # Ignore favicon requests
