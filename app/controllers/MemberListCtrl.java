@@ -5,12 +5,13 @@ import java.util.List;
 import models.AssessmentList;
 import models.Assessment;
 import models.Member;
+import models.Trainer;
 import play.Logger;
 import play.mvc.Controller;
 /**
  * Created by kevin on 07/04/2017.
  */
-public class AssessmentListCtrl extends Controller {
+public class MemberListCtrl extends Controller {
     public static void index (Long id) {
         Member member = Member.findById(id);
         List<Assessment> assessmentlist = member.assessmentlist;
@@ -18,22 +19,37 @@ public class AssessmentListCtrl extends Controller {
         render("member.html" , member, assessmentlist);
     }
 
-    public static void deleteAssessment (Long id, Long assessmentid) {
-        AssessmentList assessmentList = AssessmentList.findById(id);
-        Assessment assessment = Assessment.findById(assessmentid);
-        Logger.info("Removing " + assessmentList.name + assessmentid);
+    public static void deleteMember (Long memberid) {
+        Trainer trainer = Accounts.getLoggedInTrainer();
+        Member member = Member.findById(memberid);
 
-        assessmentList.assessments.remove(assessment);
-        assessmentList.save();
-        assessment.delete();
-        render("assessmentList.html" ,assessmentList);
+        Logger.info("Removing member " + member.name);
+
+        trainer.memberList.remove(member);
+        trainer.save();
+        member.delete();
+        redirect("/trainer");
     }
 
-    public static void addAssessment(Long id, double weight, double chest, double thigh, double upperArm, double waist, double hips ) {
+/*    public static void addAssessment(Long id, double weight, double chest, double thigh, double upperArm, double waist, double hips ) {
         Assessment assessment = new Assessment(weight, chest, thigh, upperArm, waist, hips);
         AssessmentList assessmentList = AssessmentList.findById(id);
         assessmentList.assessments.add(assessment);
         assessmentList.save();
         redirect("/assessmentLists/" + id);
+    }*/
+
+    public static void updateComment (Long id, Long memberid, long assessmentid) {
+//        AssessmentList assessmentList = AssessmentList.findById(id);
+//        Assessment assessment = Assessment.findById(assessmentid);
+//        Logger.info("Removing " + assessmentList.name + assessmentid);
+//
+//        assessmentList.assessments.remove(assessment);
+//        assessmentList.save();
+//        assessment.delete();
+//        render("assessmentList.html" ,assessmentList);
+
+        Trainer trainer = Trainer.findById(id);
+
     }
 }
