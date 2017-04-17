@@ -16,6 +16,7 @@ public class Assessment extends Model {
     public double upperArm;
     public double waist;
     public double hips;
+    public String comment;
 
     public Assessment(double weight, double chest, double thigh, double upperArm, double waist, double hips) {
         this.weight = weight;
@@ -24,5 +25,6 @@ public class Assessment extends Model {
         this.upperArm = upperArm;
         this.waist = waist;
         this.hips = hips;
+        comment = "";
     }
 }

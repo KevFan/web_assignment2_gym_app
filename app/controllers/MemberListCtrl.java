@@ -4,6 +4,7 @@ import java.util.List;
 
 import models.AssessmentList;
 import models.Assessment;
+import models.Member;
 import play.Logger;
 import play.mvc.Controller;
 /**
@@ -11,9 +12,10 @@ import play.mvc.Controller;
  */
 public class AssessmentListCtrl extends Controller {
     public static void index (Long id) {
-        AssessmentList assessmentList = AssessmentList.findById(id);
-        Logger.info("AssessmentList id = " + id);
-        render("assessmentList.html" ,assessmentList);
+        Member member = Member.findById(id);
+        List<Assessment> assessmentlist = member.assessmentlist;
+        Logger.info("Member id = " + id);
+        render("member.html" , member, assessmentlist);
     }
 
     public static void deleteAssessment (Long id, Long assessmentid) {
