@@ -1,0 +1,68 @@
+#{extends 'main.html' /}
+#{set title:'Member Assessments' /}
+
+#{admin id:"dashboard"/}
+<section class="ui raised segment">
+    <header class="ui four column center aligned middle aligned grid segment">
+        <div class="ui column">
+            <h1><i class="large user icon"></i></h1>
+            <h3 class="ui header"> ${member.name} </h3>
+        </div>
+    </header>
+</section>
+
+<section class="ui segment">
+#{list items:assessmentlist, as:'assessment'}
+    <table class="ui fixed table">
+        <thead>
+        <tr>
+            <th>Weight</th>
+            <th>Chest</th>
+            <th>Thigh</th>
+            <th>Upper Arm</th>
+            <th>Waist</th>
+            <th>Hips</th>
+            <th>Comments</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <div class="ui bulleted list">
+            <tr>
+                <td>
+                ${assessment.weight}
+                </td>
+                <td>
+                ${assessment.chest}
+                </td>
+                <td>
+                ${assessment.thigh}
+                </td>
+                <td>
+                ${assessment.upperArm}
+                </td>
+                <td>
+                ${assessment.waist}
+                </td>
+                <td>
+                ${assessment.hips}
+                </td>
+                <td>
+                ${assessment.comment}
+                </td>
+                <td><a href="/dashboard/${member.id}/deleteassessment/${assessment.id}"> <i class="icon trash"></i> </a>
+                </td>
+            </tr>
+        </div>
+        </tbody>
+    </table>
+
+    <form class="ui form">
+        <div class="field">
+            <label>Comments</label>
+            <input placeholder="Name" type="text" name="name">
+        </div>
+        <button class="ui blue submit button" formaction="/updateComment" formmethod="POST">Update</button>
+    </form>
+#{/list}
+</section>
