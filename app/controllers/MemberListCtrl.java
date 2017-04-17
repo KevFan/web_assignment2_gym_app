@@ -2,15 +2,16 @@ package controllers;
 
 import java.util.List;
 
-import models.AssessmentList;
 import models.Assessment;
 import models.Member;
 import models.Trainer;
 import play.Logger;
 import play.mvc.Controller;
+
 /**
  * Created by kevin on 07/04/2017.
  */
+
 public class MemberListCtrl extends Controller {
     public static void index (Long id) {
         Member member = Member.findById(id);

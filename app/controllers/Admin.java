@@ -2,7 +2,6 @@ package controllers;
 
 import java.util.List;
 
-import models.Assessment;
 import models.Member;
 import models.Trainer;
 import play.Logger;
