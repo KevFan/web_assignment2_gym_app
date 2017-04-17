@@ -4,6 +4,9 @@ import javax.persistence.Entity;
 
 import play.db.jpa.Model;
 
+import java.util.Calendar;
+import java.util.Date;
+
 /**
  * Created by kevin on 04/04/2017.
  */
@@ -17,6 +20,7 @@ public class Assessment extends Model {
     public double waist;
     public double hips;
     public String comment;
+    public Date date;
 
     public Assessment(double weight, double chest, double thigh, double upperArm, double waist, double hips) {
         this.weight = weight;
@@ -26,5 +30,6 @@ public class Assessment extends Model {
         this.waist = waist;
         this.hips = hips;
         comment = "";
+        date = new Date();
     }
 }
