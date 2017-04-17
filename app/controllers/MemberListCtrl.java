@@ -39,17 +39,16 @@ public class MemberListCtrl extends Controller {
         redirect("/assessmentLists/" + id);
     }*/
 
-    public static void updateComment (Long id, Long memberid, long assessmentid) {
-//        AssessmentList assessmentList = AssessmentList.findById(id);
-//        Assessment assessment = Assessment.findById(assessmentid);
-//        Logger.info("Removing " + assessmentList.name + assessmentid);
-//
-//        assessmentList.assessments.remove(assessment);
-//        assessmentList.save();
-//        assessment.delete();
-//        render("assessmentList.html" ,assessmentList);
+    public static void updateComment (Long memberid, Long assessmentid, String comment) {
+        Member member = Member.findById(memberid);
+        Assessment assessment = Assessment.findById(assessmentid);
 
-        Trainer trainer = Trainer.findById(id);
+        assessment.comment = comment;
+        assessment.save();
+        member.save();
 
+        Logger.info("Updating comment with " + comment + " for assessment: " + assessmentid);
+
+        redirect("/members/" + memberid);
     }
 }

@@ -26,8 +26,9 @@ POST   /updateMemberHeight                            Setting.updateMemberHeight
 POST   /updateMemberStartingWeight                            Setting.updateMemberStartingWeight
 
 GET     /members/{id}                         MemberListCtrl.index
-GET     /members/{id}                         MemberListCtrl.index
 GET     /trainer/deletemember/{memberid}     MemberListCtrl.deleteMember
+POST     /members/{memberid}/updatecomment/{assessmentid}     MemberListCtrl.updateComment
+
 
 
 
