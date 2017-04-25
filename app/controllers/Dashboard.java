@@ -5,6 +5,7 @@ import models.Assessment;
 import play.Logger;
 import play.mvc.Controller;
 
+import java.util.Collections;
 import java.util.List;
 
 public class Dashboard extends Controller
@@ -14,6 +15,7 @@ public class Dashboard extends Controller
         Logger.info("Rendering Dashboard");
         Member member = Accounts.getLoggedInMember();
         List<Assessment> assessmentlist = member.assessmentlist;
+        Collections.sort(assessmentlist);
         render("dashboard.html", member, assessmentlist);
     }
 

@@ -12,7 +12,7 @@ import java.util.Date;
  */
 
 @Entity
-public class Assessment extends Model {
+public class Assessment extends Model implements Comparable<Assessment> {
     public double weight;
     public double chest;
     public double thigh;
@@ -31,5 +31,10 @@ public class Assessment extends Model {
         this.hips = hips;
         comment = "";
         date = new Date();
+    }
+
+    @Override
+    public int compareTo(Assessment o) {
+        return o.date.compareTo(date);
     }
 }
