@@ -52,7 +52,7 @@ public class Dashboard extends Controller
         if (member.height <= 0)
             return 0;
         else if (member.assessmentlist.size() != 0){
-           return toTwoDecimalPlaces(member.assessmentlist.get(member.assessmentlist.size() - 1).weight / ((member.height * member.height)));
+           return toTwoDecimalPlaces(member.assessmentlist.get(0).weight / ((member.height * member.height)));
         }
         else {
             return toTwoDecimalPlaces(member.startingWeight / (member.height * member.height));

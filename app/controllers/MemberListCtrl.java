@@ -1,5 +1,6 @@
 package controllers;
 
+import java.util.Collections;
 import java.util.List;
 
 import models.Assessment;
@@ -16,6 +17,7 @@ public class MemberListCtrl extends Controller {
     public static void index (Long id) {
         Member member = Member.findById(id);
         List<Assessment> assessmentlist = member.assessmentlist;
+        Collections.sort(assessmentlist);
         Logger.info("Member id = " + id);
         render("member.html" , member, assessmentlist);
     }
