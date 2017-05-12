@@ -9,33 +9,25 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by kevin on 08/04/2017.
+ * Created by kevin on 15/04/2017.
  */
-
 @Entity
-public class Member extends Model {
+public class Trainer extends Model {
     public String name;
-    public String gender;
     public String email;
     public String password;
-    public String address;
-    public double height;
-    public double startingWeight;
 
     @OneToMany(cascade = CascadeType.ALL)
-    public List<Assessment> assessmentlist = new ArrayList<Assessment>();
+    public List<Member> memberList = new ArrayList<Member>();
 
-    public Member(String name, String gender, String email, String password, String address, double height, double startingWeight) {
+    public Trainer(String name, String email, String password) {
         this.name = name;
-        this.gender = gender;
         this.email = email;
         this.password = password;
-        this.address = address;
-        this.height = height;
-        this.startingWeight = startingWeight;
+;
     }
 
-    public static Member findByEmail(String email) {
+    public static Trainer findByEmail(String email) {
         return find("email", email).first();
     }
 

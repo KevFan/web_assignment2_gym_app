@@ -1,48 +1,148 @@
 package controllers;
 
-import models.Assessment;
-import models.AssessmentList;
 import models.Member;
+import models.Assessment;
 import play.Logger;
 import play.mvc.Controller;
 
-import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
-public class Dashboard extends Controller
-{
-  public static void index() {
-    Logger.info("Rendering Dashboard");
+public class Dashboard extends Controller {
+    public static void index() {
+        Logger.info("Rendering Dashboard");
+        Member member = Accounts.getLoggedInMember();
+        List<Assessment> assessmentlist = member.assessmentlist;
+        Collections.sort(assessmentlist);
+        render("dashboard.html", member, assessmentlist);
+    }
 
-/*    Assessment a1 = new Assessment(60.2, 45.0, 12.2, 44.4, 38,38.0);
-    Assessment a2 = new Assessment(56.6, 23.4, 24.5, 23.4, 45.2,22.4);
+    public static void addAssessment(double weight, double chest, double thigh, double upperArm, double waist, double hips) {
+        Member member = Accounts.getLoggedInMember();
+        Assessment assessment = new Assessment(weight, chest, thigh, upperArm, waist, hips);
+        member.assessmentlist.add(assessment);
+        member.save();
+        Logger.info("Adding Assessment");
+        redirect("/dashboard");
+    }
 
-    AssessmentList al1 = new AssessmentList("Assessment For Me");
-    al1.assessments.add(a1);
+    public static void deleteAssessment(Long id, Long assessmentid) {
+        Member member = Member.findById(id);
+        Assessment assessment = Assessment.findById(assessmentid);
+        member.assessmentlist.remove(assessment);
+        member.save();
+        assessment.delete();
+        Logger.info("Deleting Assessment");
+        redirect("/dashboard");
+    }
 
-    AssessmentList al2 = new AssessmentList("Assessment For You");
-    al2.assessments.add(a2);
+    /**
+     * This method calculates the BMI value for the member.
+     * <p>
+     * The formula used for BMI is weight divided by the square of the height.
+     *
+     * @return the BMI value for the member.  The number returned is truncated to two decimal places.
+     **/
+    public static double calculateBMI() {
+        Member member = Accounts.getLoggedInMember();
+        if (member.height <= 0)
+            return 0;
+        else if (member.assessmentlist.size() != 0) {
+            return toTwoDecimalPlaces(member.assessmentlist.get(0).weight / ((member.height * member.height)));
+        } else {
+            return toTwoDecimalPlaces(member.startingWeight / (member.height * member.height));
+        }
+    }
 
-    List<AssessmentList> assessmentLists = new ArrayList<AssessmentList>();
-    assessmentLists.add(al1);
-    assessmentLists.add(al2);*/
+    /*
+     * This is a private helper method.  It ensures that all double data returned from this class
+     * is restricted to two decimal places.  Note:  this method does not round
+     */
+    private static double toTwoDecimalPlaces(double num) {
+        return (int) (num * 100) / 100.0;
+    }
 
-/*    List<AssessmentList> assessmentLists = AssessmentList.findAll();
 
-    render ("dashboard.html", assessmentLists);*/
+    /**
+     * This method determines the BMI category that the member belongs to.
+     * <p>
+     * <pre>
+     *
+     * The category is determined by the magnitude of the members BMI according to the following:
+     *
+     *     BMI less than    15   (exclusive)                      is "VERY SEVERELY UNDERWEIGHT"
+     *     BMI between      15   (inclusive) and 16   (exclusive) is "SEVERELY UNDERWEIGHT"
+     *     BMI between      16   (inclusive) and 18.5 (exclusive) is "UNDERWEIGHT"
+     *     BMI between      18.5 (inclusive) and 25   (exclusive) is "NORMAL"
+     *     BMI between      25   (inclusive) and 30   (exclusive) is "OVERWEIGHT"
+     *     BMI between      30   (inclusive) and 35   (exclusive) is "MODERATELY OBESE"
+     *     BMI between      35   (inclusive) and 40   (exclusive) is "SEVERELY OBESE"
+     *     BMI greater than 40   (inclusive)                      is "VERY SEVERELY OBESE"
+     *
+     * </pre>
+     *
+     * @return <pre>
+     * The format of the String is similar to this (note the double quotes around the category):
+     *     "NORMAL".
+     * </pre>
+     */
+    public static String determineBMICategory() {
+        double bmi = calculateBMI();
 
-      Member member = Accounts.getLoggedInMember();
-      List<AssessmentList> assessmentLists = member.assessmentLists;
-      render("dashboard.html", member, assessmentLists);
-  }
+        if (bmi < 15) return "VERY SEVERELY UNDERWEIGHT";
+        else if (bmi < 16) return "SEVERELY UNDERWEIGHT";
+        else if (bmi < 18.5) return "UNDERWEIGHT";
+        else if (bmi < 25) return "NORMAL";
+        else if (bmi < 30) return "OVERWEIGHT";
+        else if (bmi < 35) return "MODERATELY OBESE";
+        else if (bmi < 40) return "SEVERELY OBESE";
+        else return "VERY SEVERELY OBESE";
+    }
 
-  public static void deleteAssessmentList(Long id) {
-    Member member = Accounts.getLoggedInMember();
-    AssessmentList assessmentList = AssessmentList.findById(id);
-    member.assessmentLists.remove(assessmentList);
-    member.save();
-    Logger.info("Removing " + assessmentList.name);
-    assessmentList.delete();
-    redirect("/dashboard");
-  }
+    /**
+     * This method returns a boolean to indicate if the member has an ideal
+     * body weight based on the Devine formula.
+     * <p>
+     * <pre>
+     * For males, an ideal body weight is:   50 kg + 2.3 kg for each inch over 5 feet.
+     * For females, an ideal body weight is: 45.5 kg + 2.3 kg for each inch over 5 feet.
+     *
+     * Note:  if no gender is specified, return the result of the female calculation.
+     *
+     * </pre>
+     *
+     * @return Returns true if the result of the devine formula is within 2 kgs (inclusive) of the
+     * starting weight; false if it is outside this range.
+     */
+    public static boolean isIdealBodyWeight() {
+        Member member = Accounts.getLoggedInMember();
+        double fiveFeet = 60.0;
+        double idealBodyWeight;
+
+        double inches = member.height * 39.37;
+
+        if (inches <= fiveFeet) {
+            if (member.gender.equals("M")) {
+                idealBodyWeight = 50;
+            } else {
+                idealBodyWeight = 45.5;
+            }
+        } else {
+            if (member.gender.equals("M")) {
+                idealBodyWeight = 50 + ((inches - fiveFeet) * 2.3);
+            } else {
+                idealBodyWeight = 45.5 + ((inches - fiveFeet) * 2.3);
+            }
+        }
+
+        if (member.assessmentlist.isEmpty()) {
+            return ((idealBodyWeight <= (member.startingWeight + 2.0))
+                    && (idealBodyWeight >= (member.startingWeight - 2.0))
+            );
+        } else {
+            return ((idealBodyWeight <= (member.assessmentlist.get(0).weight + 2.0))
+                    && (idealBodyWeight >= (member.assessmentlist.get(0).weight - 2.0))
+            );
+        }
+    }
 }

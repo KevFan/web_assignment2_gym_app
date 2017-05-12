@@ -5,6 +5,7 @@ Assessment(a1):
   upperArm: 43.4
   waist: 48
   hips: 13.4
+  date: 2014-01-25 12:03:56.633
 
 Assessment(a2):
   weight: 67.4
@@ -13,6 +14,7 @@ Assessment(a2):
   upperArm: 23.3
   waist: 56.7
   hips: 23.4
+  date: 2015-02-25 12:03:56.633
 
 Assessment(a3):
   weight: 64.4
@@ -21,6 +23,7 @@ Assessment(a3):
   upperArm: 35.3
   waist: 23.7
   hips: 23.3
+  date: 2016-03-25 12:03:56.633
 
 Assessment(a4):
   weight: 24.4
@@ -29,31 +32,36 @@ Assessment(a4):
   upperArm: 23.3
   waist: 87.7
   hips: 23.4
+  date: 2017-04-22 12:03:56.633
 
-AssessmentList(al1):
-  name: Assesment for Me
-  assessments:
+Member(m1):
+  name: Homer Simpson
+  gender: Male
+  email: homer@simpson.com
+  password: secret
+  address: Springfield
+  height: 1.8
+  startingWeight: 120
+  assessmentlist:
   - a1
   - a2
 
-AssessmentList(al2):
-  name: Assesment for You
-  assessments:
+Member(m2):
+  name: Marge Simpson
+  gender: Female
+  email: marge@simpson.com
+  password: secret
+  address: Springfield
+  height: 1.7
+  startingWeight: 70
+  assessmentlist:
   - a3
   - a4
 
-Member(m1):
-  firstname: homer
-  lastname: simpson
-  email: homer@simpson.com
+Trainer(t1):
+  name: Trainer
+  email: trainer@trainer.com
   password: secret
-  assessmentLists:
-    - al1
-
-Member(m2):
-  firstname: marge
-  lastname: simpson
-  email: marge@simpson.com
-  password: secret
-  assessmentLists:
-    - al2
+  memberList:
+  - m1
+  - m2

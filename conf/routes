@@ -4,21 +4,35 @@
 
 # Home page
 GET     /                                       Start.index
-GET     /dashboard                              Dashboard.index
-GET     /about                                  About.index
 
-GET     /admin                                  Admin.index
-
-GET     /assessmentLists/{id}                   AssessmentListCtrl.index
-GET     /assessmentLists/{id}/deleteAssessment/{assessmentid}                   AssessmentListCtrl.deleteAssessment
-GET     /dashboard/deleteAssessmentList/{id}          Dashboard.deleteAssessmentList
-
-POST    /assessmentLists/{id}/addassessment                  AssessmentListCtrl.addAssessment
 GET    /signup                                  Accounts.signup
 GET    /login                                   Accounts.login
 POST   /register                                Accounts.register
 POST   /authenticate                            Accounts.authenticate
 GET    /logout                                  Accounts.logout
+
+GET     /dashboard                              Dashboard.index
+POST    /dashboard/addassessment                      Dashboard.addAssessment
+GET     /dashboard/{id}/deleteassessment/{assessmentid}     Dashboard.deleteAssessment
+GET     /trainer                                  Admin.index
+GET     /about                                  About.index
+GET     /setting                                Setting.index
+POST   /updateMemberName                            Setting.updateMemberName
+POST   /updateMemberGender                            Setting.updateMemberGender
+POST   /updateMemberEmail                            Setting.updateMemberEmail
+POST   /updateMemberPassword                            Setting.updateMemberPassword
+POST   /updateMemberAddress                            Setting.updateMemberAddress
+POST   /updateMemberHeight                            Setting.updateMemberHeight
+POST   /updateMemberStartingWeight                            Setting.updateMemberStartingWeight
+
+GET     /members/{id}                         MemberListCtrl.index
+GET     /trainer/deletemember/{memberid}     MemberListCtrl.deleteMember
+POST     /members/{memberid}/updatecomment/{assessmentid}     MemberListCtrl.updateComment
+
+
+
+
+
 
 
 # Ignore favicon requests
