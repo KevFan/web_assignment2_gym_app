@@ -1,6 +1,7 @@
 package controllers;
 
 import models.Member;
+import models.Trainer;
 import play.Logger;
 import play.mvc.Controller;
 
@@ -47,9 +48,15 @@ public class Setting extends Controller {
      */
     public static void updateMemberEmail(String email) {
         Member member = Accounts.getLoggedInMember();
-        member.email = email;
-        member.save();
-        redirect("/setting");
+        if (Member.findByEmail(email) != null || Trainer.findByEmail(email) != null) {
+            Logger.info("User email already used");
+            redirect("/setting");
+        } else {
+            member.email = email;
+            member.save();
+            redirect("/setting");
+        }
+
     }
 
     /**

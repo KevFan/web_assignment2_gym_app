@@ -34,10 +34,15 @@ public class Accounts extends Controller {
      * @param startingWeight Starting Weight of the Member
      */
     public static void register(String name, String gender, String email, String password, String address, double height, double startingWeight) {
-        Logger.info("Registering new user " + email);
-        Member member = new Member(name, gender, email, password, address, height, startingWeight);
-        member.save();
-        redirect("/");
+        if (Member.findByEmail(email) != null || Trainer.findByEmail(email) != null) {
+            Logger.info("User email already used");
+            redirect("/");
+        } else {
+            Logger.info("Registering new user " + email);
+            Member member = new Member(name, gender, email, password, address, height, startingWeight);
+            member.save();
+            redirect("/");
+        }
     }
 
     /**
