@@ -1,73 +1,26 @@
+*{The dashboard view is the main view for the member.
+The dashboard displays the member stats with the by passing the member into the member details partial view.
+The addassessment partial view is also called to allow the member to add assessments.
+The view also lists the assessments of the member by passing each assessment from the member assessment list to the ]
+assessmentDetails partial}*
+
 #{extends 'main.html' /}
 #{set title:'Dashboard' /}
 
 #{menu id:"dashboard"/}
 <section class="ui raised segment">
-    <header class="ui four column center aligned middle aligned grid segment">
-        <div class="ui column">
-            <h1><i class="large user icon"></i></h1>
-            <h3 class="ui header"> ${member.name} </h3>
-        </div>
-        <div class="ui column">
-            <h1><i class="large bullseye icon"></i>${member.isIdealBodyWeight()}</h1>
-            <h3>Ideal Body Weight</h3>
-        </div>
-        <div class="ui column">
-            <h1><i class="large heartbeat icon"></i>${member.calculateBMI()}</h1>
-            <h3>BMI</h3>
-        </div>
-        <div class="ui column">
-            <h1><i class="large doctor icon"></i></h1>
-            <h3>${member.determineBMICategory()}</h3>
-        </div>
-    </header>
-
+    #{memberStats member:member/}
 
     #{addassessment/}
 
     <table class="ui fixed table">
-        <thead>
-        <tr>
-            <th>Weight</th>
-            <th>Chest</th>
-            <th>Thigh</th>
-            <th>Upper Arm</th>
-            <th>Waist</th>
-            <th>Hips</th>
-            <th>Comments</th>
-            <th>Date</th>
-            <th></th>
-        </tr>
-        </thead>
+        #{assessmentHeadings /}
+
         <tbody>
         <div class="ui bulleted list">
         #{list items:assessmentlist, as:'assessment'}
-        <tr>
-            <td>
-            ${assessment.weight}
-            </td>
-            <td>
-            ${assessment.chest}
-            </td>
-            <td>
-            ${assessment.thigh}
-            </td>
-            <td>
-            ${assessment.upperArm}
-            </td>
-            <td>
-            ${assessment.waist}
-            </td>
-            <td>
-            ${assessment.hips}
-            </td>
-            <td>
-            ${assessment.comment}
-            </td>
-            <td>
-            ${assessment.date}
-            </td>
-            <td> <a href="/dashboard/${member.id}/deleteassessment/${assessment.id} "> <i class="icon trash"></i> </a> </td>
+            #{assessmentDetails assessment:assessment/}
+            <td> <a href="/dashboard/${member.id}/deleteassessment/${assessment.id}"> <i class="icon trash"></i> </a> </td>
         #{/list}
         </div>
         </tbody>

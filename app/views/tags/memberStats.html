@@ -1,0 +1,26 @@
+*{The memberStats view is a partial that displays the member analytics. The view has some conditions to change icon
+color depending on the particular analytic result}*
+
+<header class="ui four column center aligned middle aligned grid segment">
+    <div class="ui column">
+        <h1><i class="large user icon"></i></h1>
+        <h3 class="ui header"> ${_member.name} </h3>
+    </div>
+    <div class="ui column">
+        #{if !_member.isIdealBodyWeight()}<h1><i class="large red bullseye icon"></i>${_member.isIdealBodyWeight()}</h1>#{/if}
+        #{else }<h1><i class="large green bullseye icon"></i>${_member.isIdealBodyWeight()}</h1>#{/else}
+        <h3>Ideal Body Weight</h3>
+    </div>
+    <div class="ui column">
+    #{if _member.calculateBMI() > 30}<h1><i class="large purple heartbeat icon"></i>${_member.calculateBMI()}</h1>#{/if}
+    #{elseif _member.calculateBMI() < 20}<h1><i class="large blue heartbeat icon"></i>${_member.calculateBMI()}</h1>#{/elseif}
+    #{else }<h1><i class="large green heartbeat icon"></i>${_member.calculateBMI()}</h1>#{/else}
+        <h3>BMI</h3>
+    </div>
+    <div class="ui column">
+    #{if _member.determineBMICategory().contains("OBESE")}<h1><i class="large red doctor icon"></i></h1>#{/if}
+    #{elseif _member.determineBMICategory().contains("UNDERWEIGHT")}<h1><i class="large blue doctor icon"></i></h1>#{/elseif}
+    #{else}<h1><i class="large green doctor icon"></i></h1>#{/else}
+        <h3>${_member.determineBMICategory()}</h3>
+    </div>
+</header>
