@@ -149,13 +149,13 @@ public class Member extends Model {
         double inches = height * 39.37;
 
         if (inches <= fiveFeet) {
-            if (gender.equals("M")) {
+            if (gender.toUpperCase().charAt(0) == 'M') {
                 idealBodyWeight = 50;
             } else {
                 idealBodyWeight = 45.5;
             }
         } else {
-            if (gender.equals("M")) {
+            if (gender.toUpperCase().charAt(0) == 'M') {
                 idealBodyWeight = 50 + ((inches - fiveFeet) * 2.3);
             } else {
                 idealBodyWeight = 45.5 + ((inches - fiveFeet) * 2.3);
