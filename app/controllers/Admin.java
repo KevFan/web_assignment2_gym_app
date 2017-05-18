@@ -20,6 +20,7 @@ public class Admin extends Controller {
 
         Trainer trainer = Accounts.getLoggedInTrainer();
         List<Member> memberList = trainer.memberList;
+//      List<Member> memberList = Member.findAll();
         render("trainer.html", memberList);
     }
 }

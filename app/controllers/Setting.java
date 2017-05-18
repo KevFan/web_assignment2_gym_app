@@ -37,7 +37,13 @@ public class Setting extends Controller {
      */
     public static void updateMemberGender(String gender) {
         Member member = Accounts.getLoggedInMember();
-        member.gender = gender;
+        if (gender.equals("") || gender.toUpperCase().charAt(0) != 'M' || gender.toUpperCase().charAt(0) != 'F'){
+            member.gender = "Unspecified";
+        } else if (gender.toUpperCase().charAt(0) == 'M') {
+            member.gender = "Male";
+        } else if (gender.toUpperCase().charAt(0) == 'F') {
+            member.gender = "Female";
+        }
         member.save();
         redirect("/setting");
     }

@@ -3,6 +3,9 @@ package utils;
 import models.Member;
 
 /**
+ * This class performs the analytics for a member such calculating BMI, determining BMI Category, is ideal weight,
+ * and trend by weight
+ *
  * Created by kevin on 19/05/2017.
  */
 public class Analytic {

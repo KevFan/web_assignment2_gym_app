@@ -7,7 +7,8 @@
 <section class="ui three column center aligned middle aligned grid segment">
     <div class="ui column">
         <h2 class="ui header">
-            <a href="/members/${member.id}">${member.name}</a>
+            #{if member.name == ''}<a href="/members/${member.id}">${member.id}</a>#{/if}
+            #{else }<a href="/members/${member.id}">${member.name}</a>#{/else}
         </h2>
     </div>
     <div class="ui column">

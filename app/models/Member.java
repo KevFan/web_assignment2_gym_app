@@ -39,7 +39,13 @@ public class Member extends Model {
      */
     public Member(String name, String gender, String email, String password, String address, double height, double startingWeight) {
         this.name = name;
-        this.gender = gender;
+        if (gender.equals("") || gender.toUpperCase().charAt(0) != 'M' || gender.toUpperCase().charAt(0) != 'F'){
+            this.gender = "Unspecified";
+        } else if (gender.toUpperCase().charAt(0) == 'M') {
+            this.gender = "Male";
+        } else if (gender.toUpperCase().charAt(0) == 'F') {
+            this.gender = "Female";
+        }
         this.email = email;
         this.password = password;
         this.address = address;
