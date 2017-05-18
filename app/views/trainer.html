@@ -4,16 +4,19 @@
 #{admin id:"trainer"/}
 
 #{list items:memberList, as:'member'}
-<section class="ui segment">
-    <h2 class="ui header">
-    ${member.name}
-    </h2>
-    <h5>${member.assessmentlist.size()} Assessments</h5>
-    <a href="/members/${member.id}" class="ui icon button">
-        <i class="icon folder open"></i>
-    </a>
-    <a href="/trainer/deletemember/${member.id}" class="ui icon button">
-        <i class="icon trash"></i>
-    </a>
+<section class="ui three column center aligned middle aligned grid segment">
+    <div class="ui column">
+        <h2 class="ui header">
+            <a href="/members/${member.id}">${member.name}</a>
+        </h2>
+    </div>
+    <div class="ui column">
+        <h5>${member.assessmentlist.size()} Assessments</h5>
+    </div>
+    <div class="ui column">
+        <a href="/trainer/deletemember/${member.id}" class="ui icon button">
+            <i class="red icon trash"></i>
+        </a>
+    </div>
 </section>
 #{/list}

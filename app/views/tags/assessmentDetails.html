@@ -1,0 +1,34 @@
+*{Partial view to list the passed in assessment measurements to a table}*
+
+<tr>
+    <td>
+        ${_assessment.date}
+    </td>
+    <td>
+        ${_assessment.weight}
+    </td>
+    <td>
+        ${_assessment.chest}
+    </td>
+    <td>
+        ${_assessment.thigh}
+    </td>
+    <td>
+        ${_assessment.upperArm}
+    </td>
+    <td>
+        ${_assessment.waist}
+    </td>
+    <td>
+        ${_assessment.hips}
+    </td>
+    <td>
+        #{if _member.trendByWeight()}<i class="large green smile icon"></i>#{/if}
+        #{else }<i class="large red frown icon"></i>#{/else}
+    </td>
+    <td>
+        ${_assessment.comment}
+    </td>
+    <td>
+        <a href="/dashboard/${_member.id}/deleteassessment/${_assessment.id}"> <i class="icon trash"></i> </a>
+    </td>
