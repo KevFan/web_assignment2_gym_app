@@ -10,19 +10,19 @@ color depending on the particular analytic result}*
         </div>
 
         <div class="column">
-        #{if !_member.isIdealBodyWeight()}<h1><i class="large red bullseye icon"></i></h1>#{/if}
+        #{if !utils.Analytic.isIdealBodyWeight(_member)}<h1><i class="large red bullseye icon"></i></h1>#{/if}
         #{else }<h1><i class="large green bullseye icon"></i></h1>#{/else}
         </div>
 
         <div class="column">
-        #{if _member.calculateBMI() > 30}<h1><i class="large purple heartbeat icon"></i>${_member.calculateBMI()}</h1>#{/if}
-        #{elseif _member.calculateBMI() < 20}<h1><i class="large blue heartbeat icon"></i>${_member.calculateBMI()}</h1>#{/elseif}
-        #{else }<h1><i class="large green heartbeat icon"></i>${_member.calculateBMI()}</h1>#{/else}
+        #{if utils.Analytic.calculateBMI(_member) > 30}<h1><i class="large purple heartbeat icon"></i>${utils.Analytic.calculateBMI(_member)}</h1>#{/if}
+        #{elseif utils.Analytic.calculateBMI(_member) < 20}<h1><i class="large blue heartbeat icon"></i>${utils.Analytic.calculateBMI(_member)}</h1>#{/elseif}
+        #{else }<h1><i class="large green heartbeat icon"></i>${utils.Analytic.calculateBMI(_member)}</h1>#{/else}
         </div>
 
         <div class="column">
-        #{if _member.determineBMICategory().contains("OBESE")}<h1><i class="large red doctor icon"></i></h1>#{/if}
-        #{elseif _member.determineBMICategory().contains("UNDERWEIGHT")}<h1><i class="large blue doctor icon"></i></h1>#{/elseif}
+        #{if utils.Analytic.determineBMICategory(_member).contains("OBESE")}<h1><i class="large red doctor icon"></i></h1>#{/if}
+        #{elseif utils.Analytic.determineBMICategory(_member).contains("UNDERWEIGHT")}<h1><i class="large blue doctor icon"></i></h1>#{/elseif}
         #{else}<h1><i class="large green doctor icon"></i></h1>#{/else}
         </div>
     </section>
@@ -38,7 +38,7 @@ color depending on the particular analytic result}*
             <h3>BMI</h3>
         </div>
         <div class="ui column">
-            <h3>${_member.determineBMICategory()}</h3>
+            <h3>${utils.Analytic.determineBMICategory(_member)}</h3>
         </div>
     </section>
 </header>

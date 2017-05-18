@@ -23,7 +23,7 @@
         ${_assessment.hips}
     </td>
     <td>
-        #{if _member.trendByWeight()}<i class="large green smile icon"></i>#{/if}
+        #{if utils.Analytic.trendByWeight(_member)}<i class="large green smile icon"></i>#{/if}
         #{else }<i class="large red frown icon"></i>#{/else}
     </td>
     <td>
