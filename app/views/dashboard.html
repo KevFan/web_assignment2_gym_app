@@ -13,16 +13,13 @@ assessmentDetails partial}*
 
     #{addassessment/}
 
-    <table class="ui fixed table">
+    <table class="ui center aligned tablet stackable celled table">
         #{assessmentHeadings /}
 
         <tbody>
-        <div class="ui bulleted list">
-        #{list items:assessmentlist, as:'assessment'}
-            #{assessmentDetails assessment:assessment/}
-            <td> <a href="/dashboard/${member.id}/deleteassessment/${assessment.id}"> <i class="icon trash"></i> </a> </td>
-        #{/list}
-        </div>
+            #{list items:assessmentlist, as:'assessment'}
+                #{assessmentDetails assessment:assessment, member:member/}
+            #{/list}
         </tbody>
     </table>
 </section>

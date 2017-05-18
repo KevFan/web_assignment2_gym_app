@@ -23,6 +23,7 @@ public class Member extends Model {
     public String address;
     public double height;
     public double startingWeight;
+    public int trendCounter;
 
     @OneToMany(cascade = CascadeType.ALL)
     public List<Assessment> assessmentlist = new ArrayList<Assessment>();
@@ -45,6 +46,7 @@ public class Member extends Model {
         this.address = address;
         this.height = height;
         this.startingWeight = startingWeight;
+        this.trendCounter = 0;
     }
 
     /**
@@ -171,5 +173,31 @@ public class Member extends Model {
                     && (idealBodyWeight >= (assessmentlist.get(0).weight - 2.0))
             );
         }
+    }
+
+    /**
+     * Method that calculates the trend of the current assessment weight with the previous assessment weight. The
+     * calculation is determined by a trendCounter, which is incremented by 1 each time the method is called.
+     * Note: Assessment are sorted by reverse order by the dashboard, therefore the first assessment in the list is
+     * the latest assessment
+     *
+     * @return A boolean of whether the trend is within +- 2kg
+     */
+    public boolean trendByWeight() {
+        double trend;
+        // If the trendCounter is less the number of assessments, calculate the current assessment with the previous
+        // assessment and increase the trendCounter by 1.
+        if ( trendCounter < assessmentlist.size() - 1) {
+            trend = (assessmentlist.get(trendCounter).weight - assessmentlist.get(trendCounter + 1).weight);
+            trendCounter++;
+        }
+        // Otherwise, calculate the trend by using the current assessment weight with the starting weight, and reset
+        // the trendCounter to 0.
+        else {
+            trend = (assessmentlist.get(trendCounter).weight - startingWeight);
+            trendCounter = 0;
+        }
+
+        return ((trend + 2 >= 0) && (trend - 2 <= 0));
     }
 }

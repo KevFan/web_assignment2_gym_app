@@ -2,26 +2,33 @@
 
 <tr>
     <td>
-    ${_assessment.date}
+        ${_assessment.date}
     </td>
     <td>
-    ${_assessment.weight}
+        ${_assessment.weight}
     </td>
     <td>
-    ${_assessment.chest}
+        ${_assessment.chest}
     </td>
     <td>
-    ${_assessment.thigh}
+        ${_assessment.thigh}
     </td>
     <td>
-    ${_assessment.upperArm}
+        ${_assessment.upperArm}
     </td>
     <td>
-    ${_assessment.waist}
+        ${_assessment.waist}
     </td>
     <td>
-    ${_assessment.hips}
+        ${_assessment.hips}
     </td>
     <td>
-    ${_assessment.comment}
+        #{if _member.trendByWeight()}<i class="large green smile icon"></i>#{/if}
+        #{else }<i class="large red frown icon"></i>#{/else}
+    </td>
+    <td>
+        ${_assessment.comment}
+    </td>
+    <td>
+        <a href="/dashboard/${_member.id}/deleteassessment/${_assessment.id}"> <i class="icon trash"></i> </a>
     </td>

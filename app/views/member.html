@@ -7,20 +7,15 @@ the assessment comment}*
 #{set title:'Member Assessments' /}
 
 #{admin id:"dashboard"/}
-<section class="ui raised segment">
-    #{memberStats member:member/}
-</section>
+
+#{memberStats member:member/}
 
 <section class="ui segment">
 #{list items:assessmentlist, as:'assessment'}
-    <table class="ui fixed table">
+    <table class="ui center aligned tablet stackable celled table">
         #{assessmentHeadings /}
         <tbody>
-        <div class="ui bulleted list">
-            #{assessmentDetails assessment:assessment/}
-                <td><a href="/dashboard/${member.id}/deleteassessment/${assessment.id}"> <i class="icon trash"></i> </a></td>
-            </tr>
-        </div>
+            #{assessmentDetails assessment:assessment, member:member/}
         </tbody>
     </table>
 
