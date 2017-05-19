@@ -9,7 +9,7 @@ import models.Member;
  * Created by kevin on 19/05/2017.
  */
 public class Analytic {
-    public static int trendCounter = 0;
+    public static int trendCounter;
 
     /**
      * This method calculates the BMI value for the member.
@@ -128,19 +128,22 @@ public class Analytic {
      */
     public static boolean trendByWeight(Member member) {
         double trend;
-        // If the trendCounter is less the number of assessments, calculate the current assessment with the previous
-        // assessment and increase the trendCounter by 1.
-        if ( trendCounter < member.assessmentlist.size() - 1) {
-            trend = (member.assessmentlist.get(trendCounter).weight - member.assessmentlist.get(trendCounter + 1).weight);
-            trendCounter++;
-        }
-        // Otherwise, calculate the trend by using the current assessment weight with the starting weight, and reset
-        // the trendCounter to 0.
-        else {
-            trend = (member.assessmentlist.get(trendCounter).weight - member.startingWeight);
-            trendCounter = 0;
-        }
+        if (member.assessmentlist.size() > 0) {
+            // If the trendCounter is less the number of assessments, calculate the current assessment with the previous
+            // assessment and increase the trendCounter by 1.
+            if ( trendCounter < member.assessmentlist.size() - 1) {
+                trend = (member.assessmentlist.get(trendCounter).weight - member.assessmentlist.get(trendCounter + 1).weight);
+                trendCounter++;
+            }
+            // Otherwise, calculate the trend by using the current assessment weight with the starting weight, and reset
+            // the trendCounter to 0.
+            else {
+                trend = (member.assessmentlist.get(trendCounter).weight - member.startingWeight);
+                trendCounter = 0;
+            }
 
-        return ((trend + 2 >= 0) && (trend - 2 <= 0));
+            return ((trend + 2 >= 0) && (trend - 2 <= 0));
+        }
+        return false;
     }
 }
