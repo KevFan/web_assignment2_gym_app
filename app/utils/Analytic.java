@@ -9,7 +9,7 @@ import models.Member;
  * Created by kevin on 19/05/2017.
  */
 public class Analytic {
-    public static int trendCounter;
+    public static int trendCounter = 0;
 
     /**
      * This method calculates the BMI value for the member.
