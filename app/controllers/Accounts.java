@@ -99,8 +99,8 @@ public class Accounts extends Controller {
     public static Trainer getLoggedInTrainer() {
         Trainer trainer = null;
         if (session.contains("logged_in_Tainerid")) {
-            String memberId = session.get("logged_in_Tainerid");
-            trainer = Trainer.findById(Long.parseLong(memberId));
+            String trainerId = session.get("logged_in_Tainerid");
+            trainer = Trainer.findById(Long.parseLong(trainerId));
         } else {
             login();
         }

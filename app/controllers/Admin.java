@@ -1,11 +1,11 @@
 package controllers;
 
-import java.util.List;
+        import java.util.List;
 
-import models.Member;
-import models.Trainer;
-import play.Logger;
-import play.mvc.Controller;
+        import models.Member;
+        import models.Trainer;
+        import play.Logger;
+        import play.mvc.Controller;
 
 /**
  * Controller that renders the trainer account session view
@@ -19,8 +19,8 @@ public class Admin extends Controller {
         Logger.info("Rendering Trainer view");
 
         Trainer trainer = Accounts.getLoggedInTrainer();
-        List<Member> memberList = trainer.memberList;
-//      List<Member> memberList = Member.findAll();
+//        List<Member> memberList = trainer.memberList;
+        List<Member> memberList = Member.findAll();
         render("trainer.html", memberList);
     }
 }

@@ -53,6 +53,11 @@ public class Dashboard extends Controller {
         member.save();
         assessment.delete();
         Logger.info("Deleting Assessment");
-        redirect("/dashboard");
+        if (session.contains("logged_in_Memberid")) {
+            redirect("/dashboard");
+        } else {
+            redirect("/members/" + id);
+        }
+
     }
 }

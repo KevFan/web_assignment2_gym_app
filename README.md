@@ -37,9 +37,10 @@ Alternative, if the project is deployed, you can visit https://play-gym.herokuap
 + Trainer - delete member
 
 ### Notes: 
-+ Trainer can delete member assessments but this logs the trainer out afterwards due to view redirection in the delete assessments method
-+ Trainer can only view members that he/she manages, therefore newly registered member's that are not assigned to a trainer cannot be viewed
 + There is no sign up available for a Trainer
++ Trainer acts as the admin, which views all members in the database (Code is also provided, for if trainers can only 
+view and delete members they manage, however currently there is no option for a trainer to add members to this list, 
+and as such newly registered members can't be viewed by the trainer)
 
 ### List of Software + Technologies Used
 + Play Framework 1.4.4
